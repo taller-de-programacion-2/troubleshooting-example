@@ -1,0 +1,23 @@
+version: "3"
+services:
+  web:
+    build: web
+    command: uvicorn main:app --host 0.0.0.0
+    ports:
+     - "3000:8000"
+    volumes:
+     - ./web:/app # modified here to take into account the new app path
+    environment:
+     - DATADOG_HOST=datadog # used by the web app to initialize the Datadog library
+  # agent section
+  datadog:
+    build: datadog
+    links:
+     - web # ensures that the web app can send metrics
+    environment:
+     - DD_API_KEY=<API_DATADOG>
+     - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /proc/:/host/proc/:ro
+     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
