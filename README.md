@@ -9,7 +9,7 @@ Ejemplo para ver tipos de métricas de aplicación y cómo varían en el tiempo 
 
 ## Uso
 1. ```make start_api``` levanta la aplicación.
-2. ```make start_traffic``` levanta locust, la cual nos permite setear cuando usuario queremos simular y el tiempo de arribo de cada uno de ellos.
+2. ```make start_traffic``` levanta locust, la cual nos permite setear cuantos usuarios queremos simular y el tiempo de arribo de cada uno de ellos.
 
 3. ```make stop_api``` para detener la aplicacion
 
